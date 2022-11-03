@@ -1,0 +1,74 @@
+﻿<div class="modal fade" id="addEditInventoryModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border py-3">
+                <h4 class="modal-title">
+                    Mange Inventory Item
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="mb-5 needs-validation" id="upsertInventryForm" novalidate>
+                    <input type="hidden" id="InventoryDetailID" name="InventoryDetailID" />
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label" for="ItemName">Item Name</label>
+                                <input class="form-control" required name="ItemName" id="ItemName" type="text">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label"  for="SerialNo">Serial no.</label>
+                                <input class="form-control" required name="SerialNo" id="SerialNo" type="text">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="PurchasedDate" class="form-label">Purchased Date</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control datepicker" name="PurchasedDate" aria-label="Purchased Date" readonly>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text fs-xl">
+                                            <i class="fal fa-calendar-alt"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label" for="IsDeviceInWarranty">Device in Warranty</label>
+                                <select class="form-control" name="IsDeviceInWarranty" id="IsDeviceInWarranty" required>
+                                    <option value=true>Yes</option>
+                                    <option value=false>No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label" for="DeviceConditionID">Condition</label>
+                                <select class="form-control" name="DeviceConditionID" id="DeviceConditionID" required>
+                                   
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <label class="form-label" for="ItemNotes">Notes</label>
+                            <textarea class="form-control" id="Note" name="Note" rows="3" spellcheck="true"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border py-2">
+                <button type="button" id="upsertInventrybtn" class="btn btn-primary"><i class="fal fa-save mr-1"></i> Submit</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fal fa-times-circle mr-1 text-white"></i> Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

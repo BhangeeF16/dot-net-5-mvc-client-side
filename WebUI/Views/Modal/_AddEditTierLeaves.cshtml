@@ -1,0 +1,75 @@
+﻿<div class="modal fade" id="addEditTierLeaves" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border py-3">
+                <h4 class="modal-title">
+                    Add Leaves for Tier
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="mb-5 needs-validation" id="upsertAssignmentToResource" novalidate>
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6 col-xl-4">
+                            <div class="form-group">
+                                <label class="form-label" for="selectTier">Select Tier</label>
+                                <select class="form-control" name="selectTier" id="selectTier" type="select">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <h6 class="fw-700"><u>Add leaves below against selected Tier.</u></h6>
+                    <div class="row mt-3">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label" for="CasualLeaves">Casual Leaves</label>
+                                <input class="form-control" name="CasualLeaves" id="CasualLeaves" type="number" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label" for="SickLeaves">Sick Leaves</label>
+                                <input class="form-control" name="SickLeaves" id="SickLeaves" type="number" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label" for="AnualLeaves">Anual Leaves</label>
+                                <input class="form-control" name="AnualLeaves" id="AnualLeaves" type="number" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label" for="PaternityLeaves">Paternity Leaves</label>
+                                <input class="form-control" name="PaternityLeaves" id="PaternityLeaves" type="number" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label" for="MaternityLeaves">Maternity Leaves</label>
+                                <input class="form-control" name="MaternityLeaves" id="MaternityLeaves" type="number" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label" for="EmergencyLeaves">Emergency Leaves</label>
+                                <input class="form-control" name="EmergencyLeaves" id="EmergencyLeaves" type="number" />
+                            </div>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+            <div class="modal-footer border py-2">
+                <button type="button" id="upsertforcastbtn" class="btn btn-primary"><i class="fal fa-save mr-1"></i> Add</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fal fa-times-circle mr-1 text-white"></i> Close</button>
+            </div>
+        </div>
+    </div>
+</div>

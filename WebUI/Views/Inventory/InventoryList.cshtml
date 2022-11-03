@@ -1,0 +1,217 @@
+﻿@{
+    ViewData["Title"] = "Inventory";
+    ViewData["PageName"] = "InventoryList";
+    ViewData["Category1"] = "Inventory";
+}
+
+<div class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Manage Inventory
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-primary ml-3 btn-sm" type="button" onclick="ShowInventoryModel()"><i class="fal fa-plus mr-1"></i> Add Inventory</button>
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div class="panel-content border-faded border-left-0 border-right-0 border-top-0">
+            <form class="mb-5 needs-validation" id="upsertforcastformFilter" novalidate>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label class="form-label" for="SelectListforResource">Select Resource</label>
+                            <select class="form-control SelectListforResourceLookup" name="ProjectId" id="SelectListforResource">
+                            </select>
+                        </div>
+                    </div>
+                    @* <div class="col-lg-3">
+                        <div class="form-group">
+                        <label class="form-label" for="SelectListforMonthD">Select Month</label>
+                        <select class="form-control" name="BillingMonth" id="SelectListforMonthD">
+                        <option selected="selected">Select Month</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                        </select>
+                        </div>
+                        </div>
+                        <div class="col-lg-3">
+                        <div class="form-group">
+                        <label class="form-label" for="SelectListforYearResource">Select Year</label>
+                        <select class="form-control" name="BillingYear" id="SelectListforYearResource">
+                        <option selected="selected">Select Year</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        </select>
+                        </div>
+                        </div>*@
+                    <div class="col-lg-3">
+                        <div class="form-group mt-4">
+                            <button type="button" id="upsertResourceforcastformFilterbtn" class="btn btn-primary"><i class="fal fa-search mr-1"></i> Apply Filter</button>
+                            <button type="button" class="btn btn-danger"><i class="fal fa-undo mr-1" onclick="LoadListing()"></i> Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <table id="inventoryList" class="table table-sm w-100 table-striped table-hover table-bordered">
+                <thead class="bg-primary-300">
+                    <tr>
+                        <th data-priority="1">Item Name</th>
+                        <th>Serial No.</th>
+                        <th>Purchased Date</th>
+                        <th>Warranty</th>
+                        <th>Condition</th>
+                        <th>Assigned To</th>
+                        <th>Assigned Date</th>
+                        <th>Assign By</th>
+                        <th data-priority="2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="InventoryDetailsSection">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<partial name="/Views/Modal/_AddEditInventoryModal.cshtml" />
+<partial name="/Views/Modal/_AssestAllocationModal.cshtml" />
+
+@section ScriptsBlock{
+
+<script>
+
+            $.ajax({
+            type: "GET",
+            url: `/ProjectForecast/LookupPeople`,
+            data: "{}",
+            success: function (data) {
+                var options = '<option value="">Select Resource</option>';
+                if (data != null) {
+                    options += data.map((item) => `<option value="${item.username}">${item.fullName}</option>`);
+                    $(".SelectListforResourceLookup").html(options);
+                }
+                $('.SelectListforResourceLookup').select2();
+            }
+            });
+
+            $.ajax({
+            type: "GET",
+            url: `/Inventory/LookupDeviceCondition`,
+            data: "{}",
+            success: function (data) {
+                var options = '<option value="">Select Condition</option>';
+                if (data != null) {
+                    options += data.map((item) => `<option value="${item.id}">${item.title}</option>`);
+                    $("#DeviceConditionID").html(options);
+                }
+                $("#DeviceConditionID").select2();
+            }
+            });
+
+
+
+            LoadListing = function (requestParam = null)
+            {
+            var path = `/Inventory/GetInventoryDetails`;
+            worqbox.partialPageLoadingToElement(path, requestParam, "InventoryDetailsSection");
+           }
+
+        LoadListing();
+
+
+        ShowInventoryModel = function(){
+            $('#upsertInventryForm').trigger("reset");
+            $("#addEditInventoryModal").modal('show');
+        }
+
+           EditInventoryDetail = function(inventoryID)
+           {
+               debugger
+               $('#upsertInventryForm').trigger("reset");
+               var momentFormat = "MM/DD/YYYY";
+               $("#InventoryDetailID").val(inventoryID);
+               $("#ItemName").val($(`#EditInventoryDetail_${inventoryID}`).data('itemname'));
+               $("#SerialNo").val($(`#EditInventoryDetail_${inventoryID}`).data('serialno'));
+               let _deviceWarrantyCheck = ($(`#EditInventoryDetail_${inventoryID}`).data('isdeviceinwarranty') == 'True' ? 'true' : 'false' );
+               let _formateDate = moment($(`#EditInventoryDetail_${inventoryID}`).data('purchaseddate')).format(momentFormat);
+               $("#IsDeviceInWarranty").val(_deviceWarrantyCheck);
+               $("#Note").val($(`#EditInventoryDetail_${inventoryID}`).data('note'));
+               $("#PurchasedDate").datepicker('setDate', _formateDate);
+               $("#DeviceConditionID").select2("trigger", "select", {
+            data: { id: $(`#EditInventoryDetail_${inventoryID}`).data('deviceconditionid'), text: $(`#EditInventoryDetail_${inventoryID}`).data('condition') }
+              });
+
+            $("#addEditInventoryModal").modal('show');
+           }
+
+           AssignAsset = function(inventoryID,assignedByID)
+           {
+                $("#InventoryAssignDetailID").val(inventoryID);
+                $("#InventoryDetailID").val(inventoryID);
+                $("#assetAllocationModal").modal('show');
+           }
+
+            ReturnAsset = function(inventoryID,assignedByID){
+              $("#assetAllocationModal").modal('show');
+            }
+
+
+    $(document).off('click', "#upsertInventrybtn").on('click', "#upsertInventrybtn", function (e) {
+        let $upserInventoryForm = $('#upsertInventryForm');
+        if (worqbox.validateForm($upserInventoryForm)) {
+            let requestParam = worqbox.getFormDataWithSerializedArray('upsertInventryForm');
+            worqbox.ajaxPostDataWithFiles("/Inventory/UpsertInventoryDetail", requestParam, "", function (data) {
+                if (data.result != null && (data.result.recordID > 0 || data.result.affectedRows > 0 ))
+                {
+                    let _operation= (data.result.recordID  > 0 ? 'added' :  (data.result.affectedRows  > 0 ? 'updated' : '' ))
+                    worqbox.showAlertWithType(`Inventory detail  ${_operation} successfully.`, "success", 3000);
+                    $upserInventoryForm.trigger("reset");
+                    $("#addEditInventoryModal").modal("hide");
+                    LoadListing();
+                } else {
+                    worqbox.showAlertWithType("Something went wrong! Please contact Support.", "error", 3000);
+                }
+            });
+
+        }
+        else {
+            return false;
+        }
+    });
+
+    $(document).off('click', "#upsertInventryAllocationbtn").on('click', "#upsertInventryAllocationbtn", function (e) {
+        let $upserInventoryAllocationForm = $('#upsertInventryAllocationForm');
+        if (worqbox.validateForm($upserInventoryAllocationForm)) {
+            let requestParam = worqbox.getFormDataWithSerializedArray('upsertInventryAllocationForm');
+            worqbox.ajaxPostDataWithFiles("/Inventory/UpsertInventoryAllocationDetail", requestParam, "", function (data) {
+                if (data?.affectedRows > 0) {
+                    worqbox.showAlertWithType("Inventory Allocation Detail upsert Successfully.", "success", 3000);
+                    $upserInventoryForm.trigger("reset");
+                    $("#addForcastModal").modal("hide");
+                    LoadListing();
+                } else {
+                    worqbox.showAlertWithType("Something went wrong! Please contact Support.", "error", 3000);
+                }
+            });
+
+        }
+        else {
+            return false;
+        }
+    });
+
+
+
+</script>
+}

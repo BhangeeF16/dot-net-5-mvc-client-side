@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebUI.Models.People>
+@using System.Globalization
+
+@if (Model != null && Model.Count() > 0)
+{
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="javascript:void(0)">
+                    <span class="rounded-circle bg-primary-100 p-2 fw-700 text-uppercase">@item.FirstName[0].ToString()@item.LastName[0].ToString()</span>
+                </a>
+                @*<a href="javascript:void(0)">
+                    <img class="rounded-circle person-image" alt="person" src="~/img/demo/avatars/avatar-admin.png" />
+                    </a>*@
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="fw-700">
+                    @item.FirstName @item.LastName
+                </a>
+            </td>
+            <td>@item.CreatedDate.Value.ToString("dd/MM/yyyy")</td>
+            <td> @item.Title</td>
+            <td>
+                <span class="badge badge-info fs-md">@item.Tier</span>
+            </td>
+            <td>
+                <a href="mailto:asad@reporteq.com">
+                    @item.Email
+                </a>
+            </td>
+            <td>
+                @item.Teams
+            </td>
+            <td>
+                @item.Mobile
+            </td>
+            <td align="center">
+                <span data-toggle="modal" data-target="#addEditEmployeeModal">
+                    <button class="btn btn-outline-info btn-xs btn-icon mr-2" onclick="EditPeople('@item.FirstName','@item.LastName','@item.Email','@item.Mobile','@item.Mobile','@item.Tier','@item.Title','@item.Teams')" title="Edit">
+                        <i class="fa fa-pen"></i>
+                    </button>
+                </span>
+                <button class="btn btn-outline-danger btn-xs btn-icon" data-toggle="tooltip" title="Remove">
+                    <i class="fa fa-trash-alt"></i>
+                </button>
+            </td>
+        </tr>
+    }
+}

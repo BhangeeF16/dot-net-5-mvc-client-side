@@ -1,0 +1,39 @@
+﻿@using WebUI.Models.ProjectForecast
+@model List<WB_ForecastingManagementResponseVM>
+@if (Model != null && Model.Count() > 0)
+{
+	int i = 0;
+	foreach (var item in Model.GroupBy(e =>
+	new
+	{
+		e.ProjectId,
+		e.Name
+	}))
+	{
+		foreach (var subItem in item)
+		{
+			<tr>
+				<td class="@(i == 0 ? "itemFirst" : "itemRest")">@(i == 0 ? item.Key.Name : "")</td>
+				<td>@subItem.UserName</td>
+				<td>@subItem.BillingMonthName</td>
+				<td>@subItem.ProjectedBillableHours</td>
+				<td>@subItem.ProjectedNonBillableHours</td>
+				<td>@subItem.LoggedNonBillable</td>
+				<td>@subItem.LoggedBillable</td>
+				<td>@(subItem.LoggedBillable + subItem.LoggedNonBillable)</td>
+			</tr>
+			i++;
+		}
+		<tr class="itemRest itemTotal">
+			<td></td>
+			<td align="center"></td>
+			<td class="bg-primary-200" align="center">Total</td>
+			<td class="bg-primary-200 ">@( item.Sum(e=>e.ProjectedBillableHours) )</td>
+			<td class="bg-primary-200 ">@( item.Sum(e=>e.ProjectedNonBillableHours) )</td>
+			<td class="bg-primary-200 ">@( item.Sum(e=>e.LoggedNonBillable) )</td>
+			<td class="bg-primary-200 ">@( item.Sum(e=>e.LoggedBillable) )</td>
+			<td class="bg-primary-200 ">@( item.Sum(e=>e.LoggedBillable) + item.Sum(e=>e.LoggedNonBillable) )</td>
+		</tr>
+		i = 0;
+	}
+}

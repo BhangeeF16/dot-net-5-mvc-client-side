@@ -1,0 +1,511 @@
+﻿@{
+    Layout = null;
+}
+<div class="modal fade modal-fullscreen" id="addEditProjectEstimateModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header border py-3">
+                <h4 class="modal-title">
+                    Project Name
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tab_borders_icons-1" role="tab"><i class="fa fa-clock mr-1 text-primary"></i> Effort Estimation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-2" role="tab"><i class="fa fa-chart-pie-alt text-info mr-1"></i>Effort Summary</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-3" role="tab"><i class="fa fa-exclamation-triangle text-danger mr-1"></i> Risks, Assumptions, Constraints</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 p-3">
+                        <div class="tab-pane fade show active addUseCasesEstimateTab" id="tab_borders_icons-1" role="tabpanel">
+                            <div class="row">
+                                <div class="col col-auto">
+                                    <div class="form-group">
+                                        <label class="form-label" for="ProjectMilestone">Project Milestone</label>
+                                        <div class="input-group">
+                                            <select class="form-control" name="ProjectMilestone" id="ProjectMilestone" required>
+                                                <option value="1">DataBase (Analysis, Design & Development)</option>
+                                                <option value="2">UI/UX Development</option>
+                                                <option value="3">End User Web App</option>
+                                                <option value="4">Admin Area (web)</option>
+                                                <option value="5">API Development</option>
+                                                <option value="6">Reporting</option>
+                                                <option value="7">Deployment</option>
+                                            </select>
+                                            <div class="input-group-append" title="Add New Milestone" data-toggle="tooltip">
+                                                <button class="btn btn-info btn-icon waves-effect waves-themed" data-target="#addMilestoneModal" data-toggle="modal" type="button">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group mt-4">
+                                        <button type="button" class="btn btn-primary addNewMileStoneBtn"><i class="fal fa-plus mr-1"></i>Add use Case</button>
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="mileStoneDiv">
+                                    <hr />
+                                    <h4 class="fw-700">
+                                        1. DataBase (Analysis, Design & Development)
+                                        <button type="button" class="btn btn-outline-danger btn-icon btn-xs ml-2 removeMilestoneBtn" title="Remove Milestone" data-toggle="tooltip">
+                                            <i class="fal fa-trash-alt"></i>
+                                        </button>
+                                    </h4>
+                                    <table id="inventoryList" class="table table-sm w-100 table-striped table-hover table-bordered">
+                                        <thead class="bg-primary-300">
+                                            <tr>
+                                                <th data-priority="1">Use Case</th>
+                                                <th>No of Transactions</th>
+                                                <th>No. of DB Fields</th>
+                                                <th>Category</th>
+                                                <th>Estimated Effort Hr(s)</th>
+                                                <th data-priority="2">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="useCasetableBody">
+                                            <tr>
+                                                <td>
+                                                    <input class="form-control form-control-sm" type="text" name="UseCaseName" id="UseCaseName" required />
+                                                </td>
+                                                <td>
+                                                    <input class="form-control form-control-sm" type="number" name="NoOfTransactions" id="NoOfTransactions" required />
+                                                </td>
+                                                <td>
+                                                    <input class="form-control form-control-sm" type="number" name="NoOfDBFields" id="NoOfDBFields" required />
+                                                </td>
+                                                <td>
+                                                    <select class="form-control form-control-sm" name="SelectComplexity" id="SelectComplexity" required>
+                                                        <option value="1">Very Complex</option>
+                                                        <option value="2">Complex</option>
+                                                        <option value="3">Medium</option>
+                                                        <option value="4">Simple</option>
+                                                        <option value="5">Vety Simple</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input class="form-control form-control-sm" type="number" name="EstimatedEffort" id="EstimatedEffort" required />
+                                                </td>
+                                                <td align="center" width="10%">
+                                                    <button class="btn btn-outline-info btn-xs btn-icon appendNewRowBtn" data-toggle="tooltip" title="Edit Estimate">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>*@
+                        </div>
+                        <div class="tab-pane fade" id="tab_borders_icons-2" role="tabpanel">
+                            <div class="alert alert-info" role="alert">
+                                <div class="d-flex align-items-center">
+                                    <div class="alert-icon">
+                                        <i class="fal fa-info-circle"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <ol class="mb-0 pl-3">
+                                            <li>
+                                                In case of special requirement for testing such as stress testing,
+                                                multi-user testing and extended regression testing, additional testing
+                                                effort will be estimated manually.
+                                            </li>
+                                            <li>
+                                                Overall/phase wise effort can be normalized if some of the activity in
+                                                any phase is not applicable completely or partially, on a certain project.
+                                                In that case comments shall be provided against that activity for justification.
+                                            </li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-sm">
+                                <tbody class="bg-secondary text-white">
+                                    <tr>
+                                        <td colspan="4"><span class="fw-700">Total Project Effort</span></td>
+                                        <td width="15%"><span class="fw-700">1158 hr(s)</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="EffortEstimateDiv">
+                                <h4 class="fw-700">
+                                    Phase-Wise Estimations
+                                </h4>
+                                <table id="inventoryList" class="table table-sm w-100 table-striped table-hover table-bordered">
+                                    <thead class="bg-primary-300">
+                                        <tr>
+                                            <th data-priority="1">Project Phase</th>
+                                            <th>Estimated Effort Hr(s)</th>
+                                            <th>Calculation</th>
+                                            <th>Change percentage</th>
+                                            <th>Final Effort Hr(s)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="useCasetableBody">
+                                        <tr>
+                                            <td>
+                                                Project Planing
+                                            </td>
+                                            <td>
+                                                10
+                                            </td>
+                                            <td>
+                                                30% of Development Effort
+                                            </td>
+                                            <td>
+                                                <input class="form-control form-control-sm" type="number" name="setNewPerscentage" id="setNewPerscentage" required />
+                                            </td>
+                                            <td>
+                                                10
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot class="bg-success-50">
+                                        <tr>
+                                            <td colspan="4">
+                                                <span class="fw-700"> Total Phase-Wise Effort</span>
+                                            </td>
+                                            <td>
+                                                <span class="fw-700">577</span>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <hr />
+                            </div>
+                            <div class="EffortEstimateDiv">
+                                <h4 class="fw-700">
+                                    Parallel Activities Estimations
+                                </h4>
+                                <table id="inventoryList" class="table table-sm w-100 table-striped table-hover table-bordered">
+                                    <thead class="bg-primary-300">
+                                        <tr>
+                                            <th data-priority="1">Project Phase</th>
+                                            <th>Estimated Effort Hr(s)</th>
+                                            <th>Calculation</th>
+                                            <th>Change percentage</th>
+                                            <th>Final Effort Hr(s)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="useCasetableBody">
+                                        <tr>
+                                            <td>
+                                                Project Monitoring &amp; Control
+                                            </td>
+                                            <td>
+                                                10
+                                            </td>
+                                            <td>
+                                                5% of Development Effort
+                                            </td>
+                                            <td>
+                                                <input class="form-control form-control-sm" type="number" name="setNewPerscentage" id="setNewPerscentage" required />
+                                            </td>
+                                            <td>
+                                                10
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot class="bg-success-50">
+                                        <tr>
+                                            <td colspan="4">
+                                                <span class="fw-700"> Parallel Activities Estimations</span>
+                                            </td>
+                                            <td>
+                                                <span class="fw-700">65</span>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <hr />
+                            </div>
+                            <div class="EffortEstimateDiv">
+                                <h4 class="fw-700">
+                                    Testing Effort
+                                </h4>
+                                <table id="inventoryList" class="table table-sm w-100 table-striped table-hover table-bordered">
+                                    <thead class="bg-primary-300">
+                                        <tr>
+                                            <th data-priority="1">Testing Cycle</th>
+                                            <th>Estimated Effort Hr(s)</th>
+                                            <th>Calculation</th>
+                                            <th>Change percentage</th>
+                                            <th>Final Effort Hr(s)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="useCasetableBody">
+                                        <tr>
+                                            <td>
+                                                Cycle 1
+                                            </td>
+                                            <td>
+                                                10
+                                            </td>
+                                            <td>
+                                                20% of Development Effort
+                                            </td>
+                                            <td>
+                                                <input class="form-control form-control-sm" type="number" name="setNewPerscentage" id="setNewPerscentage" required />
+                                            </td>
+                                            <td>
+                                                153
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot class="bg-success-50">
+                                        <tr>
+                                            <td colspan="4">
+                                                <span class="fw-700"> Total Testing Effort</span>
+                                            </td>
+                                            <td>
+                                                <span class="fw-700">153</span>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <hr />
+                            </div>
+
+                            <table class="table table-sm">
+                                <tbody class="bg-secondary text-white">
+                                    <tr>
+                                        <td colspan="4"><span class="fw-700">Total Project Effort</span></td>
+                                        <td width="15%"><span class="fw-700">1158 hr(s)</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="tab_borders_icons-3" role="tabpanel">
+                            <div class="RisksTabDiv">
+                                <h4 class="fw-700">
+                                    Risks
+                                </h4>
+                                <table id="RisksListTable" class="table table-sm w-100 table-striped table-hover table-bordered">
+                                    <thead class="bg-primary-300">
+                                        <tr>
+                                            <th data-priority="1">Sr. No.</th>
+                                            <th>Description</th>
+                                            <th data-priority="2">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="RiskstableBody">
+                                        <tr>
+                                            <td width="10%">
+                                                <input class="form-control form-control-sm" type="number" name="UseCaseName" id="UseCaseName" required />
+                                            </td>
+                                            <td>
+                                                <input class="form-control form-control-sm" type="text" name="NoOfTransactions" id="NoOfTransactions" required />
+                                            </td>
+                                            <td align="center" width="10%">
+                                                <button class="btn btn-outline-info btn-xs btn-icon addNewRowRisksBtn">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="RisksTabDiv">
+                                <hr />
+                                <h4 class="fw-700">
+                                    Assumptions
+                                </h4>
+                                <table id="RisksListTable" class="table table-sm w-100 table-striped table-hover table-bordered">
+                                    <thead class="bg-primary-300">
+                                        <tr>
+                                            <th data-priority="1">Sr. No.</th>
+                                            <th>Description</th>
+                                            <th data-priority="2">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="RiskstableBody">
+                                        <tr>
+                                            <td width="10%">
+                                                <input class="form-control form-control-sm" type="number" name="UseCaseName" id="UseCaseName" required />
+                                            </td>
+                                            <td>
+                                                <input class="form-control form-control-sm" type="text" name="NoOfTransactions" id="NoOfTransactions" required />
+                                            </td>
+                                            <td align="center" width="10%">
+                                                <button class="btn btn-outline-info btn-xs btn-icon addNewRowRisksBtn">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="RisksTabDiv">
+                                <hr />
+                                <h4 class="fw-700">
+                                    Constraints
+                                </h4>
+                                <table id="RisksListTable" class="table table-sm w-100 table-striped table-hover table-bordered">
+                                    <thead class="bg-primary-300">
+                                        <tr>
+                                            <th data-priority="1">Sr. No.</th>
+                                            <th>Description</th>
+                                            <th data-priority="2">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="RiskstableBody">
+                                        <tr>
+                                            <td width="10%">
+                                                <input class="form-control form-control-sm" type="number" name="UseCaseName" id="UseCaseName" required />
+                                            </td>
+                                            <td>
+                                                <input class="form-control form-control-sm" type="text" name="NoOfTransactions" id="NoOfTransactions" required />
+                                            </td>
+                                            <td align="center" width="10%">
+                                                <button class="btn btn-outline-info btn-xs btn-icon addNewRowRisksBtn">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border py-2">
+                <button type="button" class="btn btn-secondary waves-effect waves-themed" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(document).on('click', '.appendNewRowBtn', function () {
+            $(this).closest('.useCasetableBody').prepend(
+                `<tr>
+                    <td>
+                        <input class="form-control form-control-sm" type="text" name="UseCaseName" id="UseCaseName" required />
+                    </td>
+                    <td>
+                        <input class="form-control form-control-sm" type="number" name="NoOfTransactions" id="NoOfTransactions" required />
+                    </td>
+                    <td>
+                        <input class="form-control form-control-sm" type="number" name="NoOfDBFields" id="NoOfDBFields" required />
+                    </td>
+                    <td>
+                        <select class="form-control form-control-sm" name="SelectComplexity" id="SelectComplexity" required>
+                            <option value="1">Very Complex</option>
+                            <option value="2">Complex</option>
+                            <option value="3">Medium</option>
+                            <option value="4">Simple</option>
+                            <option value="5">Vety Simple</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input class="form-control form-control-sm" type="number" name="EstimatedEffort" id="EstimatedEffort" required />
+                    </td>
+                    <td align="center" width="10%">
+                        <button class="btn btn-outline-danger btn-xs btn-icon removeTrUseCase" data-toggle="tooltip" title="Remove Estimate">
+                           <i class="fa fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>`
+            );
+        });
+
+        $(".addNewMileStoneBtn").click(function () {
+            var mileStoneTitleNo = $('#ProjectMilestone option:selected').text()
+            $(this).closest('.addUseCasesEstimateTab').append(
+                `<div class="mileStoneDiv">
+                    <hr />
+                    <h4 class="fw-700">
+                        <span class='section-title'>${mileStoneTitleNo}</span>
+                        <button type="button" class="btn btn-outline-danger btn-icon btn-xs ml-2 removeMilestoneBtn" title="Remove Milestone" data-toggle="tooltip">
+                            <i class="fal fa-trash-alt"></i>
+                        </button>
+                    </h4>
+                    <table id="inventoryList" class="table table-sm w-100 table-striped table-hover table-bordered">
+                        <thead class="bg-primary-300">
+                            <tr>
+                                <th data-priority="1">Use Case</th>
+                                <th>No of Transactions</th>
+                                <th>No. of DB Fields</th>
+                                <th>Category</th>
+                                <th>Estimated Effort Hr(s)</th>
+                                <th data-priority="2">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="useCasetableBody">
+                            <tr>
+                                <td>
+                                    <input class="form-control form-control-sm" type="text" name="UseCaseName" id="UseCaseName" required />
+                                </td>
+                                <td>
+                                    <input class="form-control form-control-sm" type="number" name="NoOfTransactions" id="NoOfTransactions" required />
+                                </td>
+                                <td>
+                                    <input class="form-control form-control-sm" type="number" name="NoOfDBFields" id="NoOfDBFields" required />
+                                </td>
+                                <td>
+                                    <select class="form-control form-control-sm" name="SelectComplexity" id="SelectComplexity" required>
+                                        <option value="1">Very Complex</option>
+                                        <option value="2">Complex</option>
+                                        <option value="3">Medium</option>
+                                        <option value="4">Simple</option>
+                                        <option value="5">Vety Simple</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="form-control form-control-sm" type="number" name="EstimatedEffort" id="EstimatedEffort" required />
+                                </td>
+                                <td align="center" width="10%">
+                                    <button class="btn btn-outline-info btn-xs btn-icon appendNewRowBtn" data-toggle="tooltip" title="Edit Estimate">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>`
+            );
+        });
+
+        $(document).on('click', '.removeTrUseCase', function () {
+            $(this).closest('tr').remove();
+        });
+        $(document).on('click', '.removeMilestoneBtn', function () {
+            $(this).closest('.mileStoneDiv').remove();
+        });
+
+        //Third Tab for Assumptions
+        $(document).on('click', '.addNewRowRisksBtn', function () {
+            $(this).closest('.RiskstableBody').prepend(
+                `<tr>
+                    <td width="10%">
+                        <input class="form-control form-control-sm" type="number" name="UseCaseName" id="UseCaseName" required />
+                    </td>
+
+                    <td>
+                        <input class="form-control form-control-sm" type="text" name="NoOfDBFields" id="NoOfDBFields" required />
+                    </td>
+                    <td align="center" width="10%">
+                        <button class="btn btn-outline-danger btn-xs btn-icon removeTrUseCase" data-toggle="tooltip" title="Remove">
+                           <i class="fa fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>`
+            );
+        });
+
+
+    });
+</script>

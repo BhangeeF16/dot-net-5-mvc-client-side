@@ -1,0 +1,45 @@
+﻿@using System.Globalization
+@using WebUI.Models.ProjectForecast
+@model List<sp_GetProjectsForecasts>
+@if (Model != null && Model.Count() > 0)
+{
+    @foreach (var item in Model)
+    {
+        string monthName = item.BillingMonth.HasValue ? CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(item.BillingMonth.Value) : "";
+        string year = item.BillingYear.HasValue ? item.BillingYear.Value.ToString() : "";
+        string billingMonth = $"{monthName} {year}";
+        <tr>
+            <td>@item.ProjectName</td>
+            <td>@billingMonth</td>
+            <td>@item.EstimatedBillableHours</td>
+            <td>@item.EstimatedNonBillableHours</td>
+            <td>@item.NonBillableHoursLogged</td>
+            <td>@item.BillableHoursLogged</td>
+            <td>@item.TotalHrsLoggedThisMonth</td>
+            <td align="center">
+                <button onclick="ForecastDetailModel('@item.Id','@item.ProjectName','@item.EstimatedBillableHours','@item.EstimatedNonBillableHours','@item.NonBillableHoursLogged','@item.BillableHoursLogged','@item.TotalHrsLoggedThisMonth','@billingMonth')" class="btn btn-outline-success btn-xs btn-icon waves-effect waves-themed mx-2" data-toggle="tooltip" title="Details Project Forecast">
+                    <i class="fa fa-eye"></i>
+                </button>
+
+                <button onclick="DeleteForecast(@item.Id)" class="btn btn-outline-danger btn-xs btn-icon waves-effect waves-themed" data-toggle="tooltip" title="Delete Forecast">
+                    <i class="fa fa-trash-alt"></i>
+                </button>
+            </td>
+        </tr>
+     }
+
+      <tr class="bg-primary-100">
+            <td align="right"></td>
+            <td align="right"><b>Total:</b></td>
+            <td><b>@Model.Sum(i=>i.EstimatedBillableHours)</b></td>
+            <td><b>@Model.Sum(i=>i.EstimatedNonBillableHours)</b></td>
+            <td><b>@Model.Sum(i=>i.NonBillableHoursLogged)</b></td>
+            <td><b>@Model.Sum(i=>i.BillableHoursLogged)</b></td>
+            <td><b>@Model.Sum(i=>i.TotalHrsLoggedThisMonth)</b></td>
+            <td align="center">
+                -
+            </td>
+        </tr>
+
+           
+}

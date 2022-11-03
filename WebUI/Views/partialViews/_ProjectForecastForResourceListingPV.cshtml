@@ -1,0 +1,41 @@
+﻿@using WebUI.Models.ProjectForecast
+@using System.Globalization
+@model List<sp_GetResourcesForecast>
+@if (Model != null && Model.Count() > 0)
+{
+    @foreach (var item in Model)
+    {
+         string monthName = item.BillingMonth.HasValue ? CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(item.BillingMonth.Value) : "";
+        string year = item.BillingYear.HasValue ? item.BillingYear.Value.ToString() : "";
+        string billingMonth = $"{monthName} {year}";
+        <tr>
+            <td>@item.ResourceFullName </td>
+            <td>@billingMonth</td>
+            <td>@item.EstimatedBillableHours</td>
+            <td>@item.BillableHoursLogged</td>
+            <td>@item.EstimatedNonBillableHours</td>
+            <td>@item.NonBillableHoursLogged</td>
+             <td>@item.TotalEstimatedHours</td>
+            <td>@item.TotalHoursLogged</td>
+            <td>
+                <span data-target="#resourceForecastDetailModal" data-toggle="modal">
+                                <button class="btn btn-outline-success btn-xs btn-icon mr-2" onclick="ResouceFroecastDetailModel('@item.ProjectForecastId','@item.ProjectName','@item.EstimatedBillableHours','@item.EstimatedNonBillableHours','@item.NonBillableHoursLogged','@item.BillableHoursLogged','@item.TotalHrsLoggedThisMonth','@item.BillingMonth.Value','@billingMonth','@item.ResourceFullName','@item.ResourceUsername')" data-toggle="tooltip" title="Resource Forecast Detail">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                            </span>
+            </td>
+        </tr>
+    }
+
+    <tr class="bg-primary-100">
+            <td></td>
+            <td align="right"><b>Total:</b></td>
+            <td><b id="EstTotalAssignedBillable">@Model.Sum(i=>i.EstimatedBillableHours)</b></td>
+            <td><b id="EstTotalAssignedNonBillable">@Model.Sum(i=>i.EstimatedNonBillableHours)</b></td>
+            <td><b>@Model.Sum(i=>i.NonBillableHoursLogged)</b></td>
+            <td><b>@Model.Sum(i=>i.BillableHoursLogged)</b></td>
+            <td><b>@Model.Sum(i=>i.TotalHrsLoggedThisMonth)</b></td>
+            <td align="center">
+            </td>
+        </tr>
+}

@@ -1,0 +1,51 @@
+﻿@using WebUI.Models
+@using Worqbox.UI.Common
+@model List<InventoryDetailVM>
+@if (Model != null && Model.Count() > 0)
+{
+
+    foreach (var Item in Model)
+    {
+        <tr>
+            <td>@Item.ItemName.ToSafeString()</td>
+            <td>@Item.SerialNo.ToSafeString()</td>
+            <td>@Item.PurchasedDate.GetValueOrDefault().ToString("dddd, dd MMMM yyyy")</td>
+            <td>
+                @{
+                    if (Item.IsDeviceInWarranty.GetValueOrDefault())
+                    {
+                        <span class="badge badge-success text-white">In-Warranty</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-danger">Warranty Expired</span>
+                    }
+                }
+
+            </td>
+            <td>@Item.Condition.ToSafeString()</td>
+            <td>@Item.AssignedToUsername.ToSafeString()</td>
+            <td>@Item.AssignedDate</td>
+            <td>@Item.AssignedByUsername.ToSafeString() </td>
+            <td align="center">
+                <span>
+                    <button class="btn btn-outline-info btn-xs btn-icon mr-2" data-toggle="tooltip" data-deviceconditionid="@Item.DeviceConditionID" data-condition="@Item.Condition"  data-purchaseddate="@Item.PurchasedDate.GetValueOrDefault().ToString("MM/dd/yyyy")" data-isdeviceinwarranty="@Item.IsDeviceInWarranty"  data-serialno="@Item.SerialNo" data-note="@Item.Note" data-itemname="@Item.ItemName"  data-inventorydetailid="@Item.InventoryDetailID" id="EditInventoryDetail_@Item.InventoryDetailID" onclick="EditInventoryDetail('@Item.InventoryDetailID')" title="Edit Inventory Detail" type="button">
+                        <i class="fa fa-pen"></i>
+                    </button>
+                </span>
+                <span>
+                    <button class="btn btn-outline-primary btn-xs btn-icon mr-2" data-toggle="tooltip" onclick="AssignAsset('@Item.InventoryDetailID','@Item.AssignedByID')" title="Assign Asset" type="button">
+                        <i class="fa fa-link"></i>
+                    </button>
+                </span>
+                <span>
+                    <button class="btn btn-outline-danger btn-xs btn-icon" data-toggle="tooltip" onclick="ReturnAsset('@Item.InventoryDetailID','@Item.AssignedByID')" title="Return Asset" type="button">
+                        <i class="fa fa-unlink"></i>
+                    </button>
+                </span>
+            </td>
+        </tr>
+
+    }
+
+}

@@ -1,0 +1,43 @@
+﻿@using System.Globalization
+@using WebUI.Models.ProjectForecast
+@model List<sp_GetResourcesForecast>
+@if (Model != null && Model.Count() > 0)
+{
+    int i = 0;
+    foreach (var item in Model.GroupBy(e =>
+    new
+    {
+        e.ResourceUsername
+    }))
+    {
+        foreach (var subItem in item)
+        {
+
+            string monthName = subItem.BillingMonth.HasValue ? CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(subItem.BillingMonth.Value) : "";
+            string year = subItem.BillingYear.HasValue ? subItem.BillingYear.Value.ToString() : "";
+            string billingMonth = $"{monthName} {year}";
+            <tr>
+                <td class="@(i == 0 ? "itemFirst" : "itemRest")">@(i == 0 ? item.Key.ResourceUsername : "")</td>
+                <td>@subItem.ProjectName</td>
+                <td>@billingMonth</td>
+                <td>@subItem.EstimatedBillableHours</td>
+                <td>@subItem.EstimatedNonBillableHours</td>
+                <td>@subItem.NonBillableHoursLogged</td>
+                <td>@subItem.BillableHoursLogged</td>
+                <td>@(subItem.NonBillableHoursLogged + subItem.BillableHoursLogged)</td>
+            </tr>
+            i++;
+        }
+        <tr class="itemRest itemTotal">
+            <td align="center"></td>
+            <td align="center"></td>
+            <td class="bg-primary-200" align="center">Total</td>
+            <td class="bg-primary-200 ">@( item.Sum(e=>e.EstimatedBillableHours) )</td>
+            <td class="bg-primary-200 ">@( item.Sum(e=>e.EstimatedNonBillableHours) )</td>
+            <td class="bg-primary-200 ">@( item.Sum(e=>e.NonBillableHoursLogged) )</td>
+            <td class="bg-primary-200 ">@( item.Sum(e=>e.BillableHoursLogged) )</td>
+            <td class="bg-primary-200 ">@( item.Sum(e=>e.BillableHoursLogged) + item.Sum(e=>e.NonBillableHoursLogged) )</td>
+        </tr>
+        i = 0;
+    }
+}

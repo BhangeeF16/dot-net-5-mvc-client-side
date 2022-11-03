@@ -1,0 +1,58 @@
+﻿<div class="modal fade" id="addEditUseCase" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border py-3">
+                <h4 class="modal-title">
+                    Add / Edit Use Case
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="UseCaseName">Use Case</label>
+                            <input class="form-control" type="text" name="UseCaseName" id="UseCaseName" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="NoOfTransactions">No of Transactions</label>
+                            <input class="form-control" type="number" name="NoOfTransactions" id="NoOfTransactions" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="NoOfDBFields">No. of DB Fields</label>
+                            <input class="form-control" type="number" name="NoOfDBFields" id="NoOfDBFields" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="SelectComplexity">Complexity</label>
+                            <select class="form-control" name="SelectComplexity" id="SelectComplexity" required>
+                                <option value="1">Very Complex</option>
+                                <option value="2">Complex</option>
+                                <option value="3">Medium</option>
+                                <option value="4">Simple</option>
+                                <option value="5">Vety Simple</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="EstimatedEffort">Estimated Effort Hr(s)</label>
+                            <input class="form-control" type="number" name="EstimatedEffort" id="EstimatedEffort" required />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border py-2">
+                <button type="button" id="upsertforcastbtn" class="btn btn-primary mr-1"><i class="fal fa-save mr-1"></i> Save</button>
+                <button type="button" id="upsertforcastbtn" class="btn btn-success"><i class="fal fa-file-plus mr-1"></i> Save &amp; Add New</button>
+            </div>
+        </div>
+    </div>
+</div>

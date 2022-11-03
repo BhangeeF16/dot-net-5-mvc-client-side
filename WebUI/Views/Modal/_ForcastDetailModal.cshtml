@@ -1,0 +1,116 @@
+﻿<div class="modal fade modal-fullscreen" id="addForcastDetailModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border py-3">
+                <h4 class="modal-title">
+                    Manage Forecast Detail for Billing Month & Year
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="panel-tag py-2">
+                    <h4 class="fw-700 text-dark" id="ProjectName">N/A</h4>
+                    <div class="d-flex flex-wrap justify-content-between">
+                        <div>
+
+                            <ul class="list-style-none pl-0 mb-0">
+                                <li class="mb-1">
+                                    Billing Month  <span class="badge badge-primary ml-2" id="BillingMonth">0</span>
+                                </li>
+
+                                <li class="mb-1">
+                                    Est. Billable Hrs   <span class="badge badge-primary ml-2" id="EstBillable">0</span>
+                                </li>
+                                <li>
+                                    Est. Non Billable Hrs  <span class="badge badge-primary ml-2" id="EstNonBillable">0</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="list-style-none pl-0 mb-0">
+                                <li class="mb-1">
+                                    Logged Billable Hrs  <span class="badge badge-primary ml-2" id="LoggedBillable">0</span>
+                                </li>
+                                <li>
+                                    Logged Non Billable Hrs  <span class="badge badge-primary ml-2" id="LoggedNonBillable">0</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="list-style-none pl-0 mb-0">
+                                <li class="mb-1">
+                                    Total Logged Hrs   <span class="badge badge-primary ml-2" id="TotalLoggedInMonth">0</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                <form class="mb-5 needs-validation" id="ForecastForResourceForm" novalidate enctype="multipart/form-data">
+                    <input type="hidden" id="ProjectForecastId" name="ProjectForecastId" />
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label class="form-label" for="SelectListforResource/Dev">Select Resource/Dev</label>
+                                <select onchange="BindResourceHrs()"    name="ResourceUsername" class="form-control SelectListforLookupPeople" required id="SelectListforResourceDev">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 d-none" id="ResourceEstimatedBillableHoursDiv">
+                            <div class="form-group">
+                                <label class="form-label" for="AssignedBillableHours">Assigned Billable Hours</label>
+                                <input class="form-control" name="AssignedBillableHours" id="ResourceEstimatedBillableHours" required type="number" disabled>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 d-none" id="ResourceEstimatedNonBillableHoursDiv">
+                            <div class="form-group">
+                                <label class="form-label" for="AssignedNonBillableHours">Assigned Non Billable Hours</label>
+                                <input class="form-control" name="AssignedNonBillableHours" id="ResourceEstimatedNonBillableHours" required type="number" disabled>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label class="form-label" for="EstimatedBillableHours">Estimated Billable Hours</label>
+                                <input class="form-control" name="EstimatedBillableHours" id="EstimatedBillableHoursResource" min="0" required type="number">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label class="form-label" for="EstimatedNonBillableHours">Estimated Non Billable Hours</label>
+                                <input class="form-control" name="EstimatedNonBillableHours" id="EstimatedNonBillableHoursResource" min="0" required type="number">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group mt-4">
+                                <button type="button" id="ForecastForResourcebtn" class="btn btn-primary"><i class="fal fa-save mr-1"></i> Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <table id="forcastList" class="table table-sm w-100 table-striped table-hover table-bordered">
+                    <thead>
+                        <tr class="bg-primary-300">
+                            <th>Resource/Dev</th>
+                            <th>Est. Billable Hrs </th>
+                            <th>Est. Non Billable Hrs</th>
+                            <th>Logged Non Billable Hrs</th>
+                            <th>Logged Billable Hrs</th>
+                            <th>Total Logged Hrs</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ProjectForcastForResourceSection">
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer border py-2">
+                <button type="button" class="btn btn-secondary waves-effect waves-themed" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/customscripts/projectforecastresource/_ForecastDetailModal.js"></script>

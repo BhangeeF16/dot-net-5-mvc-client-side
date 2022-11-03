@@ -1,0 +1,16 @@
+﻿@using Worqbox.UI
+@using System
+@using Worqbox.UI.Extensions
+@using Worqbox.UI.Models
+@using System.Security.Claims
+@using System.Security.Principal
+
+@if (User.Identity.IsAuthenticated)
+{
+    Settings.Theme.Email = User.Identity.Name;
+    Settings.Theme.User = User.Identity.Name;
+}
+
+@inject SmartSettings Settings
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, WebUI

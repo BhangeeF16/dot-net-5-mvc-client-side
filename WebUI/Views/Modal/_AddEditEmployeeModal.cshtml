@@ -1,0 +1,104 @@
+﻿<div class="modal fade" id="addEditEmployeeModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border py-3">
+                <h4 class="modal-title">
+                    Update Employee
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row mt-3">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label" for="FirstName">First Name</label>
+                                <input class="form-control" name="FirstName" id="FirstName" type="text" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label" for="LastName">Last Name</label>
+                                <input class="form-control" name="LastName" id="LastName" type="text" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label" for="EmployeeEmail">Email</label>
+                                <input class="form-control" name="EmployeeEmail" id="EmployeeEmail" type="email" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label" for="PhoneNumber">Phone Number</label>
+                                <input class="form-control" name="PhoneNumber" id="PhoneNumber" type="text" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label" for="EmergencyPhoneNumber">Emergency Contact</label>
+                                <input class="form-control" name="EmergencyPhoneNumber" id="EmergencyPhoneNumber" type="text" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label" for="selectTier">Select Tier</label>
+                                <select class="form-control" name="selectTier" id="selectTier" type="select">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label" for="JobTitle">Job Title</label>
+                                <select class="form-control" name="JobTitle" id="JobTitle" type="select">
+                                    <option>Technical Project Manager</option>
+                                    <option>Project Manager</option>
+                                    <option>Priciple Software Engineer</option>
+                                    <option>Senior Software Engineer</option>
+                                    <option>Software Engineer</option>
+                                    <option>Junior Software Engineer</option>
+                                    <option>Senior Bussines Analyst</option>
+                                    <option>Bussines Analyst</option>
+                                    <option>Senior SQA Engineer</option>
+                                    <option>SQA Engineer</option>
+                                    <option>Coordinator</option>
+                                    <option>Lead Gen Specialist</option>
+                                    <option>Business Development Associate</option>
+                                    <option>Intern</option>
+                                    <option>Staff</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label" for="JobTitle">Select Team</label>
+                                <select class="form-control" name="JobTitle" id="JobTitle" type="select">
+                                    <option>Management</option>
+                                    <option>Development</option>
+                                    <option>Quality Assurance</option>
+                                    <option>Bussiness Development</option>
+                                    <option>Coordinator</option>
+                                    <option>Sales</option>
+                                    <option>Accounts</option>
+                                    <option>HR Department</option>
+                                    <option>Office Staff</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer border py-2">
+                <button type="button" id="upsertEmployee" class="btn btn-primary"><i class="fal fa-save mr-1"></i> Add</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fal fa-times-circle mr-1 text-white"></i> Close</button>
+            </div>
+        </div>
+    </div>
+</div>

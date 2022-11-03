@@ -1,0 +1,87 @@
+{
+  "version": "4.5",
+  "lists": [
+    {
+      "title": "Dashboard",
+      "href": "/Home/Index",
+      "icon": "fal fa-home",
+      "roles": [ "Admin" ]
+    },
+    {
+      "title": "Manage Forecast",
+      "showOnSeed": false,
+      "icon": "fal fa-calendar-check",
+      "roles": [ "Admin" ],
+      "items": [
+        {
+          "title": "Forecast By Project",
+          "href": "/Home/ManageForecastByProject",
+          "roles": [ "Admin" ]
+        },
+        {
+          "title": "Forecast By Resource",
+          "href": "/Home/ManageForecastByResource",
+          "roles": [ "Admin" ]
+        }
+      ]
+    },
+    {
+      "title": "Reports",
+      "showOnSeed": false,
+      "icon": "fal fa-chart-bar",
+      "roles": [ "Admin" ],
+      "items": [
+        {
+          "title": "Time Log Report By Project",
+          "href": "/Reports/TLReportsByProject",
+          "roles": [ "Admin" ]
+        },
+        {
+          "title": "Time Log Report By User",
+          "href": "/Reports/TLReportsByUser",
+          "roles": [ "Admin" ]
+        }
+      ]
+    },
+    {
+      "title": "Inventory",
+      "href": "/Inventory/InventoryList",
+      "icon": "fal fa-inventory",
+      "roles": [ "Admin" ]
+    },
+    {
+      "title": "Project Estimate",
+      "href": "/ProjectEstimate/ProjectEstimate",
+      "icon": "fal fa-clock",
+      "roles": [ "Admin" ]
+    },
+    {
+      "title": "HR",
+      "showOnSeed": false,
+      "icon": "fal fa-users-cog",
+      "roles": [ "Admin" ],
+      "items": [
+        {
+          "title": "People",
+          "href": "/HR/People",
+          "roles": [ "Admin" ]
+        },
+        {
+          "title": "LMS",
+          "href": "/HR/LMS",
+          "roles": [ "Admin" ]
+        },
+        {
+          "title": "Leaves Policy",
+          "href": "/HR/LeavesPolicy",
+          "roles": [ "Admin" ]
+        },
+        {
+          "title": "OPD Claims",
+          "href": "/HR/OPDClaim",
+          "roles": [ "Admin" ]
+        }
+      ]
+    }
+  ]
+}

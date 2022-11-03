@@ -1,0 +1,112 @@
+
+@{
+
+    ViewData["Title"] = "Dashboard";
+    ViewData["PageName"] = "Index";
+    ViewData["Category1"] = "Dashboard";
+    //var isFirstLogin =Model.LastPasswordChanged==null?1:0; 
+
+}
+
+<div class="row">
+    <div class="col-sm-6 col-xl-3">
+        <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
+            <div class="">
+                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                    100
+                    <small class="m-0 l-h-n">users </small>
+                </h3>
+            </div>
+            <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
+            <div class="">
+                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                    2530
+                    <small class="m-0 l-h-n">logged Hours</small>
+                </h3>
+            </div>
+            <i class="fal fa-gem position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4" style="font-size: 6rem;"></i>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
+            <div class="">
+                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                    3000
+                    <small class="m-0 l-h-n">Est. Bilable Hours</small>
+                </h3>
+            </div>
+            <i class="fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g">
+            <div class="">
+                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                    200
+                    <small class="m-0 l-h-n">Est. Non Bilable Hours</small>
+                </h3>
+            </div>
+            <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+        </div>
+    </div>
+</div>
+
+<script>
+    
+    $(document).ready(function () {
+        debugger;
+        //if user is new then prompt user to set its password
+       
+
+     
+            $('#setPasswordModal').modal('show');
+        
+        $("#setPassword").on('click', '', function (event) {
+            debugger;
+            event.preventDefault();
+            event.stopPropagation();
+            setPassword();
+        });
+
+
+    });
+     function setPassword() {
+        let form = $("#setPassword-form")
+        if (worqbox.validateForm(form) !== false) {
+            
+                    let newComparePasswords = compareNew_ConfirmPassword($("#txtNewPassword").val(), $("#txtConfirmPassword").val());
+                    if (newComparePasswords) {
+                        let requestParam = worqbox.getFormData($('#setPassword-form'));
+
+                        worqbox.ajaxPostCall(`/Account/ChangePassword`, requestParam, function (data) {
+                            if (data.success) {
+                                 $('#setPasswordModal').modal('hide');
+                                worqbox.showAlertWithType("Password Changed Successfully.", "success", 3000);
+                                setTimeout(function () {
+                                    // Load the page
+                                    location.reload();
+                                }, 2000);
+                            } else {
+                                worqbox.showAlertWithType(data.error, "error", 3000);
+                            }
+                        })
+                    }
+                
+            
+        }
+    }
+        function compareNew_ConfirmPassword(newPassword, confirmPassword) {
+        if (newPassword != confirmPassword) {
+            ilms.showAlertWithType("New and confirm password should be same", "warning", 5000);
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    </script>
+

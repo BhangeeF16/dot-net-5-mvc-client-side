@@ -1,0 +1,50 @@
+﻿<div class="modal fade" id="newOPDClaimModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header border py-3">
+                <h4 class="modal-title">
+                    Add New Claim
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+               
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="form-label" for="ClaimAmount">Claim Amount</label>
+                                <input class="form-control" name="ClaimAmount" id="ClaimAmount" type="number" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form action="/upload" class="dropzone needsclick mb-3" style="min-height: 7rem;">
+                                <div class="dz-message needsclick">
+                                    <i class="fal fa-cloud-upload text-muted mb-3"></i> <br>
+                                    <span class="text-uppercase">Drop files here or click to upload.</span>
+                                    <br>
+                                    <span class="fs-sm text-muted">This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.</span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-label" for="LeavesReason">Notes</label>
+                                <textarea class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+               
+            </div>
+            <div class="modal-footer border py-2">
+                <button type="button" class="btn btn-primary"><i class="fal fa-save mr-1"></i> Add</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fal fa-times-circle mr-1 text-white"></i> Close</button>
+            </div>
+        </div>
+    </div>
+</div>

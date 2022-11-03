@@ -1,0 +1,36 @@
+﻿<div class="modal fade" id="addProjectForEstimateModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border py-3">
+                <h4 class="modal-title">
+                    Add Project
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="mb-5 needs-validation" id="upsertAssignmentToResource" novalidate>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-label" for="ProjectName">Project Name</label>
+                                <input class="form-control" name="ProjectName" id="ProjectName" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <label class="form-label" for="ProjectEstimateNotes">Notes</label>
+                            <textarea class="form-control" id="ProjectEstimateNotes" name="ProjectEstimateNotes" rows="3" spellcheck="true"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border py-2">
+                <button type="button" id="upsertforcastbtn" class="btn btn-primary"><i class="fal fa-save mr-1"></i> Add</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fal fa-times-circle mr-1 text-white"></i> Close</button>
+            </div>
+        </div>
+    </div>
+</div>

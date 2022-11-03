@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Leaves Policy";
+    ViewData["PageName"] = "LeavesPolicy";
+    ViewData["Category1"] = "HR";
+}
+
+<div class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Leaves Policy
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-primary ml-3 btn-sm" data-toggle="modal" data-target="#addEditTierLeaves">
+                <i class="fal fa-plus mr-1"></i> Add New
+            </button>
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div class="panel-content">
+            <table id="leavesPolicyList" class="table w-100 table-sm table-striped table-hover table-bordered">
+                <thead class="bg-primary-300">
+                    <tr>
+                        <th data-priority="1" width="25">Tier</th>
+                        <th>Casual Leaves</th>
+                        <th>Sick Leaves</th>
+                        <th>Anual Leaves</th>
+                        <th>Paternity leaves</th>
+                        <th>Maternity Leaves</th>
+                        <th>Emergency leaves</th>
+                        <th width="50" data-priority="2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 1; i < 5; i++)
+                    {
+                        <tr>
+                            <td><span class="badge badge-info fs-md">@i </span></td>
+                            <td>15</td>
+                            <td>10</td>
+                            <td>15</td>
+                            <td>15</td>
+                            <td>90</td>
+                            <td>15</td>
+                            <td align="center">
+                                <span data-target="#" data-toggle="modal">
+                                    <button class="btn btn-outline-info btn-xs btn-icon" data-toggle="tooltip" title="Edit">
+                                        <i class="fa fa-pen"></i>
+                                    </button>
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<partial name="/Views/Modal/_AddEditTierLeaves.cshtml" />
+
+@section ScriptsBlock{
+    <script>
+        $('#leavesPolicyList').DataTable({
+            responsive: true,
+            columnDefs: [
+                { responsivePriority: 1, targets: 0 },
+                { responsivePriority: 2, targets: -1 }
+            ]
+        });
+    </script>
+}

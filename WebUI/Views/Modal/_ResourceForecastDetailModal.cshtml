@@ -1,0 +1,144 @@
+﻿<div class="modal fade modal-fullscreen" id="resourceForecastDetailModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header border py-3">
+                <h4 class="modal-title">
+                    Manage Forecast
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td colspan="2">
+                                <h5 class="m-0 fw-700" id="ResouceName"></h5>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                               <span class="badge badge-primary ml-2" id="BillingMonth">0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Assigned Billable Hrs</td>
+                            <td><span class="badge badge-primary ml-5" id="EstBillable">0</span></td>
+                        </tr>
+                        <tr>
+                            <td>Assigned Non Billable Hrs</td>
+                            <td><span class="badge badge-dark ml-5" id="EstNonBillable">0</span></td>
+                        </tr>
+                        <tr>
+                            <td>Logged Billable Hrs</td>
+                            <td><span class="badge badge-success ml-5" id="LoggedBillable">0</span></td>
+                        </tr>
+                        <tr>
+                            <td>Logged Non Billable Hrs</td>
+                            <td><span class="badge badge-danger ml-5" id="LoggedNonBillable">0</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <form class="my-5 needs-validation" id="upsertforcastform" novalidate enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4 col-xl-3">
+                            <div class="form-group">
+                                <label class="form-label" for="SelectListforProject">Select Project</label>
+                                <select class="form-control SelectListforProjectLookup" name="ProjectId" id="SelectListforProject" required>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 col-xl-3">
+                            <div class="form-group">
+                                <label class="form-label" for="SelectListforMonth">Select Month</label>
+                                <select class="form-control" name="BillingMonth" id="SelectListforMonth" required>
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 col-xl-3">
+                            <div class="form-group">
+                                <label class="form-label" for="EstimatedBillableHours">Billable Hours</label>
+                                <input class="form-control" name="EstimatedBillableHours" id="EstimatedBillableHours" type="number">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 col-xl-3">
+                            <div class="form-group">
+                                <label class="form-label" for="EstimatedNonBillableHours">Non Billable Hours</label>
+                                <input class="form-control" name="EstimatedNonBillableHours" id="EstimatedNonBillableHours" type="number">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 col-xl-3">
+                            <div class="form-group">
+                                <label class="form-label" for="EstimatedBillableHours">Assign Billable Hours</label>
+                                <input class="form-control" name="EstimatedBillableHours" id="EstimatedBillableHours" type="number">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 col-xl-3">
+                            <div class="form-group">
+                                <label class="form-label" for="EstimatedBillableHours">Assign Non Billable Hours</label>
+                                <input class="form-control" name="EstimatedBillableHours" id="EstimatedBillableHours" type="number">
+                            </div>
+                        </div>
+                       
+                        <div class="col-md-6 col-lg-4 col-xl-3">
+                            <div class="form-group mt-4">
+                                <button type="button" id="upsertforcastbtn" class="btn btn-primary"><i class="fal fa-save mr-1"></i> Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <table id="forcastListforRecource" class="table table-sm w-100 table-striped table-hover table-bordered">
+                    <thead>
+                        <tr class="bg-primary-300">
+                            <th>Project Name</th>
+                            <th>Billing Month</th>
+                            <th>Est. Billable Hr(s)</th>
+                            <th>Est. Non Billable Hr(s)</th>
+                            <th>Logged Non Billable Hr(s)</th>
+                            <th>Logged Billable Hr(s)</th>
+                            <th>Total Logged Hr(s)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                   @* <tr>
+                        <td>Zipp Class</td>
+                        <td>May 2022</td>
+                        <td>150.00</td>
+                        <td>20.00</td>
+                        <td>0.00</td>
+                        <td>24.33</td>
+                        <td>24.33</td>
+                        <td align="center">
+                            <button class="btn btn-outline-success btn-xs btn-icon mr-2" data-toggle="tooltip" title="Resource Forecast Detail">
+                                <i class="fa fa-eye"></i>
+                            </button>
+                            <button class="btn btn-outline-danger btn-xs btn-icon" data-toggle="tooltip" title="Delete Forecast">
+                                <i class="fa fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>*@
+                    <tbody id="ProjectForcastTemplateTypeSection">
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer border py-2">
+                <button type="button" class="btn btn-secondary waves-effect waves-themed" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/customscripts/projectforecast/_AddEditForcastModal.js"></script>

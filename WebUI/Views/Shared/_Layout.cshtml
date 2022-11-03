@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<partial name="_CopyrightHeader"/>
+<html lang="en">
+	<head>
+		<partial name="_Head"/>
+		@RenderSection("HeadBlock", required: false)
+	</head>
+    <body class="mod-bg-1 mod-nav-link mod-nav-link header-function-fixed nav-function-top mod-skin-light mod-hide-info-card @ViewBag.PreemptiveClass">
+        <partial name="_ScriptsLoadingSaving" />
+        <div class="page-wrapper">
+            <div class="page-inner">
+                <partial name="_LeftPanel" />
+                <div class="page-content-wrapper">
+                    <partial name="_PageHeader" />
+                    <main id="js-page-content" role="main" class="page-content">
+                        @if (ViewBag.PreemptiveClass?.Length > 0)
+                        {
+                        }
+                        else
+                        {
+                            @*<partial name="_PageBreadcrumb"/>*@
+                            <div class="subheader"><partial name="_PageHeading" />@RenderSection("Subheaderblock", required: false)</div>
+                        }
+                        @RenderBody()
+                    </main>
+                    <partial name="_PageContentOverlay" />
+                    <partial name="_PageFooter" />
+                    <partial name="_ShortcutModal" />
+                    <partial name="_ColorProfileReference" />
+                </div>
+            </div>
+        </div>
+        <partial name="_ShortcutMenu" />
+        <partial name="_ShortcutMessenger" />
+        <partial name="_PageSettings" />
+        <partial name="_GoogleAnalytics" />
+        <partial name="_ScriptsBasePlugins" />
+        @RenderSection("ScriptsBlock", required: false)
+        <!-- Start Overlay -->
+        <div class="row d-none" id="overlay">
+            <div class="overlaytextholder">
+                <div class="d-block " id="overlaybgimg" role="status" aria-hidden="true">
+                    <img src="/img/logo.png" class="profile-image spinner-grow bg-primary-100 profile-image rounded-circle">
+                </div>
+                <div class="overlaytext">
+                    <strong class="text-white">Loading Please Wait...</strong>
+                </div>
+            </div>
+        </div>
+        <!-- END Overlay -->
+        <partial name="/Views/Modal/_ChangePasswordModal.cshtml" />
+
+        @if (User?.Claims?.Where(x => x.Type == "isFirstLogin")?.FirstOrDefault()?.Value.ToString() == "1")
+{
+    <div class="modal fade show" id="setPasswordModal" data-backdrop="static" tabindex="-1" role="dialog" aria-modal="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary-900 p-2">
+                    <h4 class="modal-title text-white">
+                        <span aria-hidden="true"><i class="fal fa-edit mr-2"></i></span>  Set Password
+                    </h4>
+                    @*<button type="button" class="close btn_close_modal" data-isaddcase="false" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                        </button>*@
+                </div>
+                <div class="modal-body">
+                    <div class="row flex">
+                        <div class="col-md-6 col-sm-12 flex">
+                            <form novalidate="" id="setPassword-form">
+                                @*@Html.AntiForgeryToken()
+                                    @Html.ValidationBootstrap()*@
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="form-label" for="NewPassword">New Password</label>
+                                            <input type="password" class="form-control" data-oldvalue="" value="" placeholder="New Password" id="txtNewPassword" name="NewPassword" required>
+                                            <div class="invalid-feedback">Sorry, you missed this one.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="form-label" for="ConfirmPassword">Confirm Password</label>
+                                            <input type="password" class="form-control" data-oldvalue="" value="" placeholder="Confirm Password" id="txtConfirmPassword" name="ConfirmPassword" required>
+                                            <div class="invalid-feedback">Sorry, you missed this one.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer py-3 bg-faded">
+                    @*<button type="button" class="btn btn-sm btn-danger" data-isaddcase="false" data-dismiss="modal"><span class="fal fa-times mr-1"></span>Cancel</button>*@
+                    <button type="button"  data-patientinfotype="" id="setPassword" class="btn btn-sm btn-success"><span class="fal fa-save mr-1"></span>Set Password</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+    </body>
+</html>

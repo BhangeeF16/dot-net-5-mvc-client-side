@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "OPD Claims";
+    ViewData["PageName"] = "OPDClaim";
+    ViewData["Category1"] = "HR";
+}
+
+<div class="panel">
+    <div class="panel-hdr">
+        <h2>
+            OPD Claim List
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-primary ml-3 btn-sm" data-toggle="modal" data-target="#newOPDClaimModal">
+                <i class="fal fa-plus mr-1"></i> New Claim
+            </button>
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div class="panel-content">
+            <table id="AllleavesList" class="table w-100 table-sm table-striped table-hover table-bordered">
+                <thead class="bg-primary-300">
+                    <tr>
+                        <th data-priority="1">Name</th>
+                        <th width="40">Tier</th>
+                        <th>OPD Limit</th>
+                        <th>Claimed</th>
+                        <th>Remaining</th>
+                        <th>New Claim</th>
+                        <th>Claim Date</th>
+                        <th width="100" data-priority="2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Muhammad Asad Saeed</td>
+                        <td><span class="badge badge-info fs-md">4</span></td>
+                        <td><span class="badge badge-dark badge-pill min-w5">80000</span></td>
+                        <td><span class="badge badge-danger badge-pill min-w5">50000</span></td>
+                        <td><span class="badge badge-warning badge-pill min-w5">30000</span></td>
+                        <td><span class="badge badge-info badge-pill min-w5">15000</span></td>
+                        <td>15-07-2022</td>
+                        <td align="center">
+                            <span data-target="#" data-toggle="modal">
+                                <button class="btn btn-outline-info btn-xs btn-icon mr-2" data-toggle="tooltip" title="View Detail">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                            </span>
+                            <span data-target="#" data-toggle="modal">
+                                <button class="btn btn-outline-success btn-xs btn-icon mr-2" data-toggle="tooltip" title="Approve">
+                                    <i class="fa fa-check"></i>
+                                </button>
+                            </span>
+                            <span data-target="#" data-toggle="modal">
+                                <button class="btn btn-outline-danger btn-xs btn-icon" data-toggle="tooltip" title="Reject">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section ScriptsBlock{
+    <partial name="/Views/Modal/_OPDClaimModal.cshtml" />
+    <script>
+        $('#AllleavesList').DataTable({
+            responsive: true,
+            columnDefs: [
+                { responsivePriority: 1, targets: 0 },
+                { responsivePriority: 2, targets: -1 }
+            ]
+        });
+    </script>
+}

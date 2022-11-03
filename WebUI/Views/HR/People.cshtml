@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "People";
+    ViewData["PageName"] = "People";
+    ViewData["Category1"] = "HR";
+}
+<div class="panel">
+    <div class="panel-hdr">
+        <h2>
+            People
+        </h2>
+      @*  <div class="panel-toolbar">
+            <button class="btn btn-primary ml-3 btn-sm" data-toggle="modal" data-target="#addEditEmployeeModal">
+                <i class="fal fa-plus mr-1"></i> Add New
+            </button>
+        </div>*@
+    </div>
+    <div class="panel-container show">
+        <div class="panel-content border-faded border-left-0 border-right-0 border-top-0">
+            <table id="peopleList" class="table w-100 table-striped table-hover table-bordered">
+                <thead class="bg-primary-300">
+                    <tr>
+                        <th width="20"></th>
+                        <th data-priority="1">Name</th>
+                        <th width="75">Joining Date</th>
+                        <th>Job Title</th>
+                        <th width="20">Tier</th>
+                        <th>Email</th>
+                        <th>Teams</th>
+                        <th width="75">Mobile</th>
+                        <th width="50" data-priority="2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="HRPeopleListingTemplate">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<partial name="/Views/Modal/_AddEditEmployeeModal.cshtml" />
+<partial name="/Views/partialViews/_HRPeopleListingPV.cshtml"/>
+@section ScriptsBlock{
+    <script>
+        $(document).ready(function () {
+    $('#peopleList').DataTable({
+            responsive: true,
+           
+            columnDefs: [
+                { responsivePriority: 1, targets: 0 },
+                { responsivePriority: 2, targets: -1 },
+                 { "bSearchable": false, "aTargets": [1]},
+            ]
+        });
+});
+        
+     
+         BindPeopleRecord = function () {
+            worqbox.partialPageLoadingToElement(`/HR/GetPeople`, null, "HRPeopleListingTemplate");
+         }
+      BindPeopleRecord();
+      EditPeople = function(firstName,lastName,email,mobile,emergencyContact,tier,title,team){
+          $("#upsertEmployee").text("Update")
+          $('#FirstName').prop("disabled",true);
+          $('#LastName').prop("disabled",true);
+          $('#EmployeeEmail').prop("disabled",true);
+          
+           $('#FirstName').val(firstName);
+           $('#LastName').val(lastName);
+           $('#EmployeeEmail').val(email);
+      }
+    </script>
+}

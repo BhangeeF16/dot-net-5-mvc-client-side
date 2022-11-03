@@ -1,0 +1,43 @@
+﻿@using WebUI.Models.ProjectForecast
+@using System.Globalization
+@model List<sp_GetResourcesForecast>
+@if (Model != null && Model.Count() > 0)
+{
+    @foreach (var item in Model)
+    {
+         string monthName = item.BillingMonth.HasValue ? CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(item.BillingMonth.Value) : "";
+        string year = item.BillingYear.HasValue ? item.BillingYear.Value.ToString() : "";
+        string billingMonth = $"{monthName} {year}";
+        <tr>
+            <td>@item.ProjectName </td>
+            <td>@billingMonth</td>
+            <td>@item.EstimatedBillableHours</td>
+            <td>@item.EstimatedNonBillableHours</td>
+            <td>@item.NonBillableHoursLogged</td>
+            <td>@item.BillableHoursLogged</td>
+            <td>@item.TotalHrsLoggedThisMonth</td>
+            <td>
+                <span data-toggle="modal">
+                                <button class="btn btn-outline-success btn-xs btn-icon mr-2"  data-toggle="tooltip" title="Resource Forecast Detail">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                            </span>
+                <button onclick="DeleteForecast(@item.Id)" class="btn btn-outline-danger btn-xs btn-icon" data-toggle="tooltip" title="Delete Forecast Resource">
+                    <i class="fa fa-trash-alt"></i>
+                </button>
+            </td>
+        </tr>
+    }
+
+    <tr class="bg-primary-100">
+            <td></td>
+            <td align="right"><b>Total:</b></td>
+            <td><b id="EstTotalAssignedBillable">@Model.Sum(i=>i.EstimatedBillableHours)</b></td>
+            <td><b id="EstTotalAssignedNonBillable">@Model.Sum(i=>i.EstimatedNonBillableHours)</b></td>
+            <td><b>@Model.Sum(i=>i.NonBillableHoursLogged)</b></td>
+            <td><b>@Model.Sum(i=>i.BillableHoursLogged)</b></td>
+            <td><b>@Model.Sum(i=>i.TotalHrsLoggedThisMonth)</b></td>
+            <td align="center">
+            </td>
+        </tr>
+}
